@@ -1,0 +1,10 @@
+# Lokale Build-Ordner und generierte HTML-Dateien
+dist/
+index.html
+why.html
+nostalgia.html
+hardware.html
+webring.html
+
+# Lokale Docker-Compose (Production / Server-spezifisch)
+docker-compose.yml

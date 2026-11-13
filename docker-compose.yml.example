@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: site_old_juronet
+    restart: always
+    ports:
+      - "3015:80"

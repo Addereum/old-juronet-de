@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS 1.6 Server Browser (2005) - 2005.lukas-ross.de</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hl-browser-window {
+            background-color: #C0C0C0;
+            border: 2px outset #FFFFFF;
+            padding: 4px;
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            color: #000000;
+        }
+        .hl-tabs {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 0px;
+            padding-left: 2px;
+        }
+        .hl-tab {
+            background-color: #C0C0C0;
+            border-top: 2px outset #FFFFFF;
+            border-left: 2px outset #FFFFFF;
+            border-right: 2px outset #FFFFFF;
+            border-bottom: none;
+            padding: 5px 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .hl-tab.active {
+            background-color: #ECE9D8;
+            position: relative;
+            top: 1px;
+            border-top: 2px outset #FFFFFF;
+        }
+        .hl-panel {
+            background-color: #ECE9D8;
+            border: 2px inset #FFFFFF;
+            padding: 8px;
+        }
+        .browser-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: "Courier New", monospace;
+            font-size: 11px;
+            background-color: #FFFFFF;
+            color: #000000;
+            border: 2px inset #808080;
+        }
+        .browser-table th {
+            background-color: #DFD9C3;
+            color: #000000;
+            border: 1px solid #808080;
+            padding: 3px;
+            text-align: left;
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: 11px;
+        }
+        .browser-table td {
+            border: 1px solid #E0E0E0;
+            padding: 3px;
+            cursor: pointer;
+        }
+        .browser-table tr:hover td {
+            background-color: #000080;
+            color: #FFFFFF;
+        }
+        .hl-button {
+            background-color: #C0C0C0;
+            border: 2px outset #FFFFFF;
+            padding: 4px 12px;
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .hl-button:active {
+            border: 2px inset #FFFFFF;
+        }
+        .console-box {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: "Courier New", monospace;
+            border: 2px inset #808080;
+            padding: 6px;
+            height: 90px;
+            overflow-y: scroll;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+        .js-notice {
+            background-color: #FFFFE1;
+            border: 1px solid #ACA899;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        .add-server-box {
+            margin-top: 10px;
+            padding: 6px;
+            background-color: #DFD9C3;
+            border: 1px inset #FFFFFF;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="xp"></div>
+<div id="win98"></div>
+<div id="matrix"></div>
+
+<!-- Karl Klammer (Clippy) -->
+<div class="clippy-wrapper">
+    <div class="clippy-speech">
+        <div class="clippy-header">📎 HLServers v1.6 (JS Edition)</div>
+        <div style="margin-bottom: 4px;">
+            "Ausnahmsweise JavaScript! Du kannst hier sogar eigene Server per LocalStorage als Favoriten speichern."
+        </div>
+        <div style="text-align: right;">
+            <b>&gt;&gt; <a href="index.html">Startseite</a></b>
+        </div>
+    </div>
+    <img src="clippy.png" alt="Karl Klammer" class="clippy-img">
+</div>
+
+<table class="main-table" align="center" cellpadding="5" cellspacing="0">
+    <tr>
+        <td class="header">
+            <h1>*** Counter-Strike 1.6 Server Browser ***</h1>
+            <font size="2">GoldSource Engine | <b>Hinweis: Hier wird ausnahmsweise JavaScript verwendet!</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!-- Einseinheitliche, feste Navbar ohne Zerren -->
+            <div class="switcher-box">
+                <b>[ Design: ]</b>
+                <a href="#xp">XP Luna</a> |
+                <a href="#win98">Win98</a> |
+                <a href="#matrix">Matrix</a>
+                &nbsp;|&nbsp;
+                <b>[ Navigation: ]</b>
+                <a href="index.html">Home</a> |
+                <a href="why.html">Warum?</a> |
+                <a href="nostalgia.html">Nostalgie</a> |
+                <a href="hardware.html">Hardware</a> |
+                <a href="webring.html">Webring</a> |
+                <a href="serverbrowser.html">Server-Browser</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="content">
+
+                <!-- Ausnahmsweise-JS-Hinweis -->
+                <div class="js-notice">
+                    <b>Hinweis des Webmasters:</b> Da das originale HL-Serverbrowser-Feeling mit reinem Statik-HTML und CSS (wegen dynamischer Pings und Favoriten) an seine Grenzen stößt, wird auf dieser speziellen Unterseite <b>ausnahmsweise JavaScript</b> verwendet. Deine gespeicherten Favoriten werden dank <code>localStorage</code> direkt im Browser-Speicher gesichert!
+                </div>
+
+                <!-- Originales HL-Fenster -->
+                <div class="hl-browser-window">
+                    <div class="hl-tabs">
+                        <div class="hl-tab active" id="tabInternet" onclick="switchTab('internet')">Internet / LAN</div>
+                        <div class="hl-tab" id="tabFavs" onclick="switchTab('favorites')">Favorites (LocalStorage)</div>
+                    </div>
+
+                    <div class="hl-panel">
+                        <table class="browser-table" id="serverTable">
+                            <thead>
+                                <tr>
+                                    <th width="45%">Server Name</th>
+                                    <th width="25%">Map</th>
+                                    <th width="15%">Players</th>
+                                    <th width="15%">Ping</th>
+                                </tr>
+                            </thead>
+                            <tbody id="serverTableBody">
+                                <!-- Wird dynamisch via JavaScript befüllt -->
+                            </tbody>
+                        </table>
+
+                        <br>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <button class="hl-button" onclick="loadServers()">Refresh List</button>
+                                <button class="hl-button" onclick="pingServers()">Ping All</button>
+                            </div>
+                            <div>
+                                <button class="hl-button" style="background-color: #000080; color: #FFFFFF;" onclick="connectSelected()">Connect</button>
+                            </div>
+                        </div>
+
+                        <!-- Eigener Server per JS / LocalStorage hinzufügen -->
+                        <div class="add-server-box">
+                            <b>Eigenen Server zu Favoriten hinzufügen:</b><br>
+                            <input type="text" id="newServerName" placeholder="Server Name (z.B. Mein LAN Server)" style="width: 200px; font-size: 11px;">
+                            <input type="text" id="newServerMap" placeholder="Map (z.B. fy_pool_day)" style="width: 120px; font-size: 11px;">
+                            <button class="hl-button" onclick="addFavorite()">Als Favorit speichern</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konsole unten -->
+                <br>
+                <b>HLTV / Spiel-Konsole:</b>
+                <div class="console-box" id="consoleLog">
+                    Host_Initialize<
+                    Steam client connected (localStorage enabled).<br>
+                    Querying master servers...<br>
+                </div>
+
+                <div class="back-link" align="center">
+                    <br>
+                    <b>&lt;&lt; <a href="nostalgia.html">Zurück zur Nostalgie-Ecke</a></b> |
+                    <a href="index.html">Startseite</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="footer">
+            <hr size="1">
+            &copy; 2005 Lukas Roß. All rights reserved.<br>
+            Kontakt: <a href="mailto:webmaster@juronet.de">Webmaster anmailen</a> |
+            <a href="https://lukas-ross.de/imprint" target="_blank">Impressum</a>
+        </td>
+    </tr>
+</table>
+
+<!-- JavaScript für Server-Browser & LocalStorage -->
+<script>
+    // Standard-Server Liste
+    const defaultServers = [
+        { name: "[GER] Keller-LAN Dedicated #1", map: "de_dust2", players: "12/16", ping: "5 ms", type: "default" },
+        { name: "CS 1.6 Fun & Rank [FastDL]", map: "de_inferno", players: "16/16", ping: "14 ms", type: "default" },
+        { name: "LAN-Party 2005 - Hauptrechner", map: "cs_assault", players: "8/10", ping: "2 ms", type: "default" },
+        { name: "JURO-Hosting Testserver #01", map: "fy_pool_day", players: "4/32", ping: "9 ms", type: "default" }
+    ];
+
+    let currentView = 'internet';
+
+    function getFavorites() {
+        let favs = localStorage.getItem('cs2005_favorites');
+        return favs ? JSON.parse(favs) : [];
+    }
+
+    function loadServers() {
+        const tbody = document.getElementById('serverTableBody');
+        tbody.innerHTML = '';
+
+        let list = (currentView === 'internet') ? defaultServers.concat(getFavorites()) : getFavorites();
+
+        if(list.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" align="center" style="color: gray;">Keine Favoriten gespeichert. Füge unten welche hinzu!</td></tr>`;
+            return;
+        }
+
+        list.forEach((srv, index) => {
+            let tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${srv.name} ${srv.type === 'fav' ? '⭐' : ''}</td>
+                <td>${srv.map}</td>
+                <td>${srv.players}</td>
+                <td class="ping">${srv.ping}</td>
+            `;
+            tr.onclick = () => connectToServer(srv.name, srv.map, srv.ping);
+            tbody.appendChild(tr);
+        });
+
+        const log = document.getElementById('consoleLog');
+        log.innerHTML += `> Loaded ${list.length} servers (${currentView}).<br>`;
+        log.scrollTop = log.scrollHeight;
+    }
+
+    function switchTab(tab) {
+        currentView = (tab === 'favorites') ? 'favorites' : 'internet';
+        document.getElementById('tabInternet').classList.toggle('active', currentView === 'internet');
+        document.getElementById('tabFavs').classList.toggle('active', currentView === 'favorites');
+        loadServers();
+    }
+
+    function addFavorite() {
+        let nameInput = document.getElementById('newServerName');
+        let mapInput = document.getElementById('newServerMap');
+
+        if(!nameInput.value) {
+            alert('Bitte einen Servernamen eingeben!');
+            return;
+        }
+
+        let newFav = {
+            name: nameInput.value,
+            map: mapInput.value || 'de_dust2',
+            players: Math.floor(Math.random() * 10) + 1 + "/16",
+            ping: Math.floor(Math.random() * 8) + 3 + " ms",
+            type: 'fav'
+        };
+
+        let favs = getFavorites();
+        favs.push(newFav);
+        localStorage.setItem('cs2005_favorites', JSON.stringify(favs));
+
+        nameInput.value = '';
+        mapInput.value = '';
+
+        switchTab('favorites');
+
+        const log = document.getElementById('consoleLog');
+        log.innerHTML += `> Server saved to LocalStorage successfully.<br>`;
+        log.scrollTop = log.scrollHeight;
+    }
+
+    function pingServers() {
+        const pings = document.querySelectorAll('.ping');
+        const log = document.getElementById('consoleLog');
+        log.innerHTML += `> Pinging active server list...<br>`;
+        pings.forEach(p => {
+            let r = Math.floor(Math.random() * 12) + 2;
+            p.innerText = r + " ms";
+        });
+        log.innerHTML += `> Ping update complete.<br>`;
+        log.scrollTop = log.scrollHeight;
+    }
+
+    function connectToServer(name, map, ping) {
+        const log = document.getElementById('consoleLog');
+        log.innerHTML += `> Connecting to <b>${name}</b> (${map})...<br>`;
+        log.innerHTML += `> Connection established. Ping: ${ping}. Loading assets...<br>`;
+        log.scrollTop = log.scrollHeight;
+    }
+
+    function connectSelected() {
+        connectToServer('Ausgewählter Server', 'de_dust2', '5 ms');
+    }
+
+    window.onload = function() {
+        loadServers();
+    }
+</script>
+
+</body>
+</html>

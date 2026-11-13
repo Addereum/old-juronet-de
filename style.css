@@ -1,0 +1,249 @@
+/* --- 1. Standard: Windows XP Luna Theme --- */
+body {
+    background-color: #3a6ea5;
+    color: #000000;
+    font-family: Tahoma, Arial, sans-serif;
+    position: relative;
+    min-height: 100vh;
+}
+.main-table {
+    width: 750px;
+    background-color: #ECE9D8;
+    border: 3px outset #0055EA;
+    margin: auto;
+}
+.header {
+    background-color: #0055EA;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+    padding: 12px;
+    border-bottom: 2px solid #FF8000;
+}
+.xmas-banner {
+    background-color: #800000;
+    color: #00FF00;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    border: 2px dashed #FFFFFF;
+}
+.switcher-box {
+    background-color: #DFD9C3;
+    border: 1px inset #FFFFFF;
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 11px;
+    margin: 5px auto;
+    width: 98%;
+    box-sizing: border-box;
+}
+.content {
+    padding: 15px;
+    background-color: #FFFFFF;
+    border: 2px inset #ACA899;
+    margin: 10px;
+}
+.news-box {
+    background-color: #FFFFE1;
+    border: 1px solid #ACA899;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+.webring {
+    text-align: center;
+    background-color: #DFD9C3;
+    border: 1px dashed #000000;
+    padding: 5px;
+    margin: 10px;
+    font-size: 11px;
+}
+.footer {
+    text-align: center;
+    font-size: 10px;
+    color: #333333;
+    padding: 5px;
+}
+a { color: #0000FF; }
+a:visited { color: #800080; }
+
+/* Karl Klammer (Clippy) Standard-Box (XP) */
+.clippy-wrapper {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 999;
+}
+.clippy-speech {
+    width: 200px;
+    background-color: #FFFFE1;
+    border: 2px solid #000000;
+    color: #000000;
+    padding: 8px;
+    font-family: Tahoma, sans-serif;
+    font-size: 11px;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+}
+.clippy-header {
+    font-weight: bold;
+    color: #000080;
+    border-bottom: 1px solid #C0C0C0;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+}
+.clippy-img {
+    width: 65px;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+/* Nostalgie Galerietabelle Standard */
+.gallery-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.gallery-table td {
+    border: 1px solid #808080;
+    padding: 10px;
+    text-align: center;
+    background-color: #F8F8F8;
+}
+.retro-img {
+    max-width: 100%;
+    height: auto;
+    border: 2px inset #808080;
+}
+
+
+/* --- 2. Der :target-Switch (global für alle Seiten) --- */
+
+/* Windows 98 Modus */
+body:has(#win98:target) {
+    background-color: #808080;
+}
+#win98:target ~ .main-table {
+    background-color: #C0C0C0;
+    border: 3px ridge #FFFFFF;
+}
+#win98:target ~ .main-table .header {
+    background-color: #000080;
+    color: #FFFF00;
+    border-bottom: none;
+}
+#win98:target ~ .main-table .switcher-box,
+#win98:target ~ .main-table .webring {
+    background-color: #E0E0E0;
+    border: 1px inset #808080;
+}
+#win98:target ~ .main-table .content {
+    background-color: #FFFFFF;
+    border: 2px inset #808080;
+}
+#win98:target ~ .main-table .news-box {
+    background-color: #FFFFE0;
+    border: 1px solid #808080;
+}
+#win98:target ~ .main-table .gallery-table td {
+    background-color: #ECE9D8;
+    border: 1px solid #808080;
+}
+#win98:target ~ .clippy-wrapper .clippy-speech {
+    background-color: #DFD9C3;
+    border: 2px outset #FFFFFF;
+}
+#win98:target ~ .clippy-wrapper .clippy-header {
+    color: #000080;
+    border-bottom: 1px solid #808080;
+}
+
+/* Matrix Modus */
+body:has(#matrix:target) {
+    background-color: #000000;
+    color: #00FF00;
+}
+#matrix:target ~ .main-table {
+    background-color: #051105;
+    border: 3px ridge #00FF00;
+    color: #00FF00;
+}
+#matrix:target ~ .main-table td {
+    color: #00FF00;
+}
+#matrix:target ~ .main-table .header {
+    background-color: #003300;
+    color: #00FF00;
+    border-bottom: 1px solid #00FF00;
+}
+#matrix:target ~ .main-table .switcher-box,
+#matrix:target ~ .main-table .webring {
+    background-color: #001100;
+    border: 1px solid #00FF00;
+    color: #00FF00;
+}
+#matrix:target ~ .main-table .content {
+    background-color: #000A00;
+    border: 2px inset #00FF00;
+    color: #00FF00;
+}
+#matrix:target ~ .main-table .news-box {
+    background-color: #001500;
+    border: 1px solid #00FF00;
+    color: #00FF00;
+}
+#matrix:target ~ .main-table .gallery-table td {
+    background-color: #001100;
+    border: 1px solid #00FF00;
+}
+#matrix:target ~ .main-table a { color: #00FFCC; }
+#matrix:target ~ .main-table a:visited { color: #008866; }
+#matrix:target ~ .clippy-wrapper .clippy-speech {
+    background-color: #001100;
+    border: 2px solid #00FF00;
+    color: #00FF00;
+}
+#matrix:target ~ .clippy-wrapper .clippy-header {
+    color: #00FF00;
+    border-bottom: 1px solid #00FF00;
+}
+#matrix:target ~ .clippy-wrapper a { color: #00FFCC; }
+
+/* Winamp & Retro Media Player */
+.winamp-box {
+    background-color: #222222;
+    color: #00FF00;
+    font-family: "Courier New", monospace;
+    border: 2px outset #555555;
+    padding: 10px;
+    margin-top: 15px;
+}
+.winamp-screen {
+    background-color: #000000;
+    border: 2px inset #555555;
+    padding: 5px;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+/* Gästebuch-Box im Nostalgie-Bereich */
+.guestbook-box {
+    background-color: #FFFFE1;
+    border: 1px solid #ACA899;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #000000;
+}
+
+/* 88x31 Banner / Badge Leiste */
+.badge-bar {
+    text-align: center;
+    margin-top: 15px;
+    padding: 5px;
+    background-color: #DFD9C3;
+    border: 1px inset #FFFFFF;
+}

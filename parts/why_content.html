@@ -1,0 +1,71 @@
+<tr>
+        <td>
+            <div class="content">
+                <h2>1. Die Initialzündung: Als der PC noch bockte</h2>
+                <hr width="100%" size="1" color="black">
+                <p>
+                    Alles fing damals vor dem Windows-XP-Desktop an. Das allererste, was ich jemals in meinem Leben an einem PC gemacht habe, war ein <b>Zugsimulator</b> – ein absolutes Technik-Monster für die damalige Möhre von Rechner, die bei jedem Weichenwechsel bedrohlich an ihre Grenzen stieß. Während der Lüfter klang wie eine startende Boeing, schlich sich die Lokomotive mit müden 15 Frames pro Sekunde über die Pixel-Schienen. Da wusste man noch, was Rechenleistung kostete!
+                </p>
+                <p>
+                    Ich bin zwar zu spät geboren, um das grauenvolle Kreischen eines 56k-Modems beim Einwählen noch leibhaftig als alltägliche Folter miterlebt zu haben, aber die Faszination für die rohe, unverfälschte Technik dieser Ära blieb.
+                </p>
+
+                <h3>2. Warum das Ganze als Retro-Seite?</h3>
+                <p>
+                    Wenn man sich das heutige Internet anschließt – mit aufgeblähten Frameworks, seitenlangen Cookie-Bannern, Autoplay-Videos und Tracking-Skripten, die mehr CPU-Last erzeugen als ein modernes Computerspiel –, sehnt man sich manchmal zurück in eine Zeit, in der das Web noch wild, unperfekt und vor allem verdammt ehrlich war. Keine nervigen Animationen beim Scrollen, keine 50 Megabyte schweren JavaScript-Blobs, sondern ehrlicher Text, Tabellen und purer Code.
+                </p>
+
+                <h3>3. Der eigentliche Ausraster: Die Peering-Politik von heute</h3>
+                <p>
+                    Genug der Nostalgie – reden wir über das, was mich (und jeden anderen, der sich mit Netzwerken auskennt) absolut auf die Palme bringt: <b>Die moderne Peering-Politik der Netzprovider.</b>
+                </p>
+                <p>
+                    Es heißt immer noch oft genug, das Internet sei „Neuland“. Von wegen! Das Internet ist ein knallhartes Business, in dem große Provider absichtlich auf der Bremse stehen, um den Traffic künstlich zu verkomplizieren oder extra abzukassieren.
+                </p>
+                <p>
+                    Da sitzt man gemütlich im Raum NRW, betreibt Server oder schaut sich die Latenzen an – und kriegt auf Server in der direkten Umgebung (wie DE-VEL oder Düsseldorf) einen 12er bis 20er Ping aufs Auge gedrückt. Und währenddessen? Sitzt irgendein Glücklicher in der Schweiz, pingt einen Server in Frankfurt an und lacht sich mit einem absurden <b>6er Ping</b> ins Fäustchen! Wie kann das sein? Warum stellen sich deutsche Provider bei Zusammenschaltungen (Interconnection &amp; Peering) so unfassbar quer, als müssten sie die Datenpakete persönlich mit dem Lastenrad über die Alpen tragen?
+                </p>
+
+                <h3>4. Valve macht es vor: Open Peering vs. Provider-Sparwahn</h3>
+                <p>
+                    Schauen wir uns zum Vergleich mal an, wie Netzwerke funktionieren sollten, wenn man Ahnung hat: <b>Valve (Steam)</b> betreibt mit AS32590 eines der aggressivsten und kundenfreundlichsten Netze der Gaming-Welt. Valve liefert Spiele-Downloads und Matchmaking-Pakete über eine mustergültige <b>Open-Peering-Policy</b> aus. Sie wollen ihre Daten so nah wie möglich am Kunden übergeben und peeren an großen Internet-Knotenpunkten (wie dem DE-CIX in Frankfurt) mit absolut jedem, der anfragt – unkompliziert und direkt.
+                </p>
+                <p>
+                    Das Problem in Deutschland: Während Valve die Daten quasi auf einem silbernen Tablett direkt vor die Haustür legt, kneifen deutsche Provider oft oder leiten den Traffic über teure, überbuchte Transit-Strecken um.
+                </p>
+
+                <h3>5. Der große Provider-Faktencheck: Wer macht was (und wo hakt es)?</h3>
+                <p>
+                    Wer sich anschaut, wie die deutsche ISP-Landschaft strukturiert ist, merkt schnell, dass es nicht *den einen* Bösewicht gibt, sondern ein komplexes Geflecht aus Legacy-Netzen, Wholesale-Vorleistungen und kaufmännischem Druck:
+                </p>
+                <ul>
+                    <li>
+                        <b>Deutsche Telekom (AS3320):</b> Der Platzhirsch mit dem gigantischsten Netz der Republik. Sie fahren seit jeher eine sehr starre „Paid Peering“-Strategie. Wer als großes Content-Netzwerk (oder kleinerer ISP) nicht für direkte Zusammenschaltungen (Direct Interconnection) blecht, landet gerne auf den stark frequentierten Public-Peering-Ports oder wird über teure Transit-Hops geführt. Technisch exzellent ausgebaut, aber preislich und richtlinienmäßig oft ein geschlossener Block.
+                    </li>
+                    <li>
+                        <b>1&amp;1 (inkl. historischem Versatel-Netz):</b> Hat durch die Übernahme von Versatel ein starkes, eigenes Glasfaser-Backbone (dessen Wurzeln tief in den Telekommunikationsaktivitäten der VEW – Vereinigte Elektrizitätswerke Westfalen – in NRW liegen). Im täglichen Betrieb und bei Standard-Anbindungen solide, aber je nach Region stark von eingekauften VDSL-Vorleistungen der Telekom und externen Transit-Carriern abhängig.
+                    </li>
+                    <li>
+                        <b>Vodafone (ex-Unitymedia / ex-Kabel Deutschland):</b> Der Kabel-Riese schleppt historisch bedingt die gigantische Last von koaxialen Segmenten mit sich herum. Wenn in einem Straßenzug abends alle gleichzeitig streamen oder zocken, bricht die Latenz im Segment gerne mal ein. Im Backbone setzt man auf große Transit-Partner, wobei das Routing zu bestimmten internationalen Zielen oft verschlungen über Frankfurt oder Amsterdam läuft.
+                    </li>
+                    <li>
+                        <b>O2 / Telefónica (AS6805):</b> Betreibt ein überraschend agiles und oft sehr gut angebundenes Netz, das besonders durch aggressive Mobilfunk- und DSL-Tarife bekannt wurde. Im Peering-Bereich oft unauffälliger und direkter unterwegs als die ganz großen Konkurrenten, schluckt aber im Backbone ebenfalls enorme Datenmengen.
+                    </li>
+                    <li>
+                        <b>Deutsche Glasfaser &amp; PŸUR (Tele Columbus):</b> Bauen moderne FTTH-Infrastrukturen oder verwalten fragmentierte Kabelnetze. Im Wholesale- und Transit-Einkauf wird hier jedoch oft hart kalkuliert – spart man an den direkten Interconnection-Ports an den Internetknoten, landen Pakete auf teuren Umwegen.
+                    </li>
+                    <li>
+                        <b>Regionale Stadtwerke &amp; lokale Netzanbieter (z.B. EWE, NetCologne, wilhelm.tel):</b> Zeigen oft, wie es richtig geht! Viele regionale Glasfaser-Anbieter pflegen hervorragendes lokales Peering, kurze Wege zu den regionalen IXPs und liefern saubere, latenzarme Verbindungen ab, weil sie ihr Netz noch als echten Mehrwert für die Region begreifen.
+                    </li>
+                </ul>
+                <p>
+                    Die Schweizer (oder Skandinavier) machen es im Schnitt vor: Mit dedizierten Trassen direkt nach Frankfurt, einer Kultur des offenen Peerings und ohne künstliche Transit-Umwege zeigen sie, dass ein einstelliger Ping keine Hexerei ist, sondern schlicht der Wille, das Netz performant zu bauen.
+                </p>
+
+                <div class="back-link" align="center">
+                    <br>
+                    <b>&lt;&lt; <a href="index.html">Zurück zur Startseite</a></b>
+                </div>
+            </div>
+        </td>
+    </tr>
